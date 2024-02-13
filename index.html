@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Game</title>
+  <style>
+    h1 {
+      font-size: 3em;
+      padding: 10px 10px;
+      margin-top: 80px;
+      background-color: #FFC0CB;
+      border-radius: 5px;
+      border: 2px solid;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #FFD599;
+      text-align: center;
+      margin: 20px;
+    }
+    button {
+      padding: 10px 60px;
+      background-color: #FFD770;
+      border: 2px solid black;
+      border-radius: 50px;
+      font-size: 18px;
+      color: #000000;
+      margin-top: 25px;
+      cursor: pointer;
+    }
+    .color-box {
+      width: 80px;
+      height: 80px;
+      background-color: #808080;
+      border: 2px solid white;
+      border-radius: 10px;
+      margin: 10px;
+      display: inline-block;
+    }
+    .container {
+      text-align: center;
+    }
+    .button-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .loader {
+      border: 8px solid #fff;
+      border-top: 8px solid #000;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 0.5s linear infinite;
+      margin: 0 auto;
+      display: none;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Color Game</h1>
+
+    <div class="color-box" id="color1"></div>
+    <div class="color-box" id="color2"></div>
+    <div class="color-box" id="color3"></div>
+
+    <div class="button-container">
+      <button onclick="showLoader()">GO!</button>
+      <div class="loader" id="loader"></div>
+    </div>
+  </div>
+
+  <script>
+    function showLoader() {
+      document.getElementById('loader').style.display = 'block';
+
+      setTimeout(generateColors, 1000);
+    }
+
+    function generateColors() {
+      const colors = ['#FF0000', '#0000FF', '#00FF00', '#FFFF00', '#800080', '#FFA500'];
+
+      const generatedColors = [];
+      for (let i = 0; i < 3; i++) {
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        const selectedColor = colors[randomIndex];
+        generatedColors.push(selectedColor);
+      }
+
+      document.getElementById('color1').style.backgroundColor = generatedColors[0];
+      document.getElementById('color2').style.backgroundColor = generatedColors[1];
+      document.getElementById('color3').style.backgroundColor = generatedColors[2];
+
+      document.getElementById('loader').style.display = 'none'; // Hide the loader
+    }
+  </script>
+</body>
+</html>
